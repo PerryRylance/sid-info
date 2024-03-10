@@ -41,9 +41,9 @@ class SidHash
         }
 
         if ($dataOffset == self::HEADER_SIZE_V2) {
-            $isNtsc = ord($this->seekAndRead($fh, 119, 1) & 12) == 8;
+            $isNtsc = ord((int)$this->seekAndRead($fh, 119, 1) & 12) == 8;
             if (!$isRsid) {
-                $isPsidSpecific = ord($this->seekAndRead($fh, 119, 1) & 2) > 0;
+                $isPsidSpecific = ord((int)$this->seekAndRead($fh, 119, 1) & 2) > 0;
             }
         } elseif ($dataOffset != self::HEADER_SIZE_V1) {
             throw new \RuntimeException("Wrong header size");
